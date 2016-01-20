@@ -1,0 +1,42 @@
+﻿* {
+	padding:0;
+	margin:0;
+}
+
+body {
+	background-color: black;
+	background-image:url('../images/starField.png');
+	background-attachment: fixed;
+	background-repeat:no-repeat;
+	padding:0;
+}
+
+h1 {
+    color: #EEEEEE;
+}
+    
+#nebulaContainer {
+	margin:0;
+	background:url('../images/planetThingMandelbulb.png');
+	background-size:80%;
+	background-attachment: fixed;
+	background-repeat:no-repeat;
+	background-position:50% 0;
+	position: relative;
+	overflow: hidden;
+}
+
+#window {
+	max-width: 100%;
+    height: auto;
+}
+
+#transferDiv {
+	width: 100%;
+	height: 1000px;
+	background: black; /* For browsers that do not support gradients */
+    background: -webkit-linear-gradient(black, rgba(255,0,0,0)); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(black, rgba(255,0,0,0)); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(black,  rgba(255,0,0,0)); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(black,  rgba(255,0,0,0)); /* Standard syntax */
+}
