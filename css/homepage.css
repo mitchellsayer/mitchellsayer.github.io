@@ -20,7 +20,7 @@ h1 {
 	background:url('../images/planetThingMandelbulb.png');
 	background-size:80%;
 	background-attachment: fixed;
-	background-repeat:no-repeat;
+	background-repeat:no-repeat; 
 	background-position:50% 0;
 	position: relative;
 	overflow: hidden;
