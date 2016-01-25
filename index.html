@@ -1,35 +1,190 @@
+
+<!-- 
+    TODO:
+     - Put in actual pictures and video 
+     - Use CDNs (cdnjs, google, etc.) for faster resource delivery
+     - Other pages!
+-->
+
+<!DOCTYPE html>
 <html>
-	<head>
-		<title>Mitchell Sayer</title>
-		<link href='http://fonts.googleapis.com/css?family=Rock+Salt' rel='stylesheet' type='text/css'>
-		<link href='http://fonts.googleapis.com/css?family=Lobster' rel='stylesheet' type='text/css'>
-		<link rel="stylesheet" type="text/css" href="/static/css/main_style.css">
-	</head>
-	<body onload="onLoad()">
-		<div id="titleBar">
-            <div class="spacerButton">
-                <h2 class="menuText"></h2>
+    
+    <head>
+        <!-- Meta -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="author" content="United Cancer Advocacy Action Network">
+
+        <!-- Title -->
+        <title>UCAAN</title>
+
+        <!-- Favicon -->
+        <link rel="shortcut icon" href="/static/images/favicon.ico" type="image/x-icon">
+
+        <!-- Fonts -->
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <link href='https://fonts.googleapis.com/css?family=Lato:300,400,700' rel='stylesheet' type='text/css'>
+        
+        <!-- CSS -->
+        <link href="/static/css/materialize.css" rel='stylesheet' type='text/css'>
+        <link href="/static/css/site.css" rel='stylesheet' type='text/css'>
+    </head>
+    <body>
+        <div class="navbar-fixed">
+            <nav>
+                <div class="nav-wrapper black">
+                    <img id="ucaan-logo-image" src="/static/images/navbar-logo.png">
+                    <a id="ucaan-mobile-activate" href="#" data-activates="ucaan-mobile-navbar" class="button-collapse"><i class="mdi-navigation-menu"></i></a>
+                    <ul class="ucaan-navbar-buttons right hide-on-med-and-down">
+                        <li><a class='dropdown-button waves-effect waves-purple' data-beloworigin="true" data-activates='ucaan-about'>About Us</a></li>
+                        <li><a class='dropdown-button waves-effect waves-purple' data-beloworigin="true" data-activates='ucaan-help-center'>Help Center</a></li>
+                        <li><a class='dropdown-button waves-effect waves-purple' data-beloworigin="true" data-activates='ucaan-get-involved'>Get Involved</a></li>
+                        <li><a href="#" class="waves-effect waves-purple">Contact</a></li>
+                        <li><a href="#" class="waves-effect waves-light btn purple darken-2">Donate</a></li>
+                    </ul>
+                     <ul class="side-nav" id="ucaan-mobile-navbar">
+                        <li class="no-padding">
+                            <ul class="collapsible collapsible-accordion">
+                            <li>
+                                <a class="collapsible-header bolded-text"><b>About Us</b><i class="material-icons right">arrow_drop_down</i></a>
+                                <div class="collapsible-body">
+                                    <ul>
+                                        <li><a href="#" class="waves-effect waves-purple">Our Story</a></li>
+                                        <li><a href="#" class="waves-effect waves-purple">Team UCAAN</a></li>
+                                        <li><a href="#" class="waves-effect waves-purple">Board of Directors</a></li>
+                                    </ul>
+                                </div>
+                            </li>
+                            </ul>
+                        </li>
+                        <li class="no-padding">
+                            <ul class="collapsible collapsible-accordion">
+                            <li>
+                                <a class="collapsible-header"><b>Help Center</b><i class="material-icons right">arrow_drop_down</i></a>
+                                <div class="collapsible-body">
+                                    <ul>
+                                        <li><a href="#" class="waves-effect waves-purple">Patient Resources</a></li>
+                                        <li><a href="#" class="waves-effect waves-purple">UCAAN Applications</a></li>
+                                        <li><a href="#" class="waves-effect waves-purple">Request Help</a></li>
+                                    </ul>
+                                </div>
+                            </li>
+                            </ul>
+                        </li>
+                        <li class="no-padding">
+                            <ul class="collapsible collapsible-accordion">
+                            <li>
+                                <a class="collapsible-header"><b>Get Involved</b><i class="material-icons right">arrow_drop_down</i></a>
+                                <div class="collapsible-body">
+                                    <ul>
+                                        <li><a href="#" class="waves-effect waves-purple">Volunteer</a></li>
+                                        <li><a href="#" class="waves-effect waves-purple">Join Our Board</a></li>
+                                    </ul>
+                                </div>
+                            </li>
+                            </ul>
+                        </li>
+                        <li><a href="#" class="waves-effect waves-purple bolded-text"><b>Contact</b></a></li>
+                        <li class="divider"></li>
+                        <li><a href="#" class="waves-effect waves-purple bolded-text"><b>Donate</b></a></li>
+                    </ul>
+                </div>
+            </nav>    
+        </div>
+        
+        <ul id='ucaan-about' class='dropdown-content'>
+            <li><a href="#" class="ucaan-navbar-button black white-text">Our Story</a></li>
+            <li><a href="#" class="ucaan-navbar-button black white-text">Team UCAAN</a></li>
+            <li><a href="#" class="ucaan-navbar-button black white-text">Board of Directors</a></li>
+        </ul>
+        <ul id='ucaan-help-center' class='dropdown-content'>
+            <li><a href="#" class="ucaan-navbar-button black white-text">Patient Resources</a></li>
+            <li><a href="#" class="ucaan-navbar-button black white-text">UCAAN Applications</a></li>
+            <li><a href="#" class="ucaan-navbar-button black white-text">Request Help</a></li>
+        </ul>
+        <ul id='ucaan-get-involved' class='dropdown-content'> 
+            <li><a href="#" class="ucaan-navbar-button black white-text">Volunteer</a></li>
+            <li><a href="#" class="ucaan-navbar-button black white-text">Join Our Board</a></li>
+        </ul>
+        
+        <div id="ucaan-description-background">
+            <div class="container">
+                <div class="row center-align">
+                    <div class="col l12 l12">
+                        <div class="outline-text">
+                            <h3 id="ucaan-description">UCAAN focuses on the cancer patient.</h3>
+                        </div>
+                        <a id="ucaan-description-button" class="waves-effect waves-purple btn-large white">Learn More</a>
+                    </div>
+                </div>
             </div>
-			<div class="menuButton">
-				<h2 class="menuText">About Me</h2>
-			</div>
-			<div id="projects" class="menuButton">
-				<h2 class="menuText">Projects</h2>
-			</div>
-			<h1 id="ninjaText">NinjaTechnician</h1>
-		</div>
-		<div id="mainBanner"></div>
-		<div id="container">
-            <div class="projectCard"></div>
-            <div class="projectCard"></div>
-            <div class="projectCard"></div>
-            <div class="projectCard"></div>
-            <div class="projectCard"></div>
-            <div class="projectCard"></div>
-		</div>
-		<div id="footer">
-            <h1 id="contact">Site Design</h1>
-			<h3 id="nameFoot">© 2016 Mitchell Sayer</h3>
-		</div>
-	</body>
+        </div>
+        
+        <div id="what-is-ucaan">
+            <div class="row center-align">
+                <div class="col l12">
+                    <img src="/static/images/ribbon.png" id="ucaan-ribbon">
+                    <h3 id="what-is-ucaan-text">What is UCAAN?</h3>
+                    <div class="container">
+                        <video class="responsive-video" controls>
+                            <source src="/static/videos/what-is-ucaan.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- div id="ucaan-patients">
+            <div class="row center-align">
+                <div class="ucaan-patient col s4">
+                    <img src="/static/images/patient-1.jpg">
+                    <h3>Jesse Craighead</h3>
+                    <p>Story goes here! Lorem ipsum blah blah blah ... You get the gist. I just need more text here to simulate a real story.</p>
+                </div>
+                <div class="ucaan-patient col s4">
+                    <img src="/static/images/patient-2.jpg">
+                    <h3>Mitchell Sayer</h3>
+                    <p>I am cancer. Now, thanks to UCAAN, I am not anymore. </p>
+                </div>
+                <div class="ucaan-patient col s4">
+                    <img src="/static/images/patient-3.jpg">
+                    <h3>Matt&trade;</h3>
+                    <p>Story goes here! Lorem ipsum blah blah blah ... You get the gist. I just need more text here to simulate a real story.</p>
+                </div>
+            </div>
+        </div -->
+        
+        <div id="ucaan-slideshow">
+            <div class="container">
+                <div class="slider">
+                    <ul class="slides">
+                      <li>
+                        <img src="/static/images/slideshow-1.jpg">
+                      </li>
+                      <li>
+                        <img src="/static/images/slideshow-2.jpg">
+                      </li>
+                      <li>
+                        <img src="/static/images/slideshow-3.jpg">
+                      </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <div id="ucaan-footer">
+            <div class="inline-images">
+                <a href=""><img src="/static/images/Facebook.png"</a>
+                <a href=""><img src="/static/images/GooglePlus.png"></a>
+                <a href=""><img src="/static/images/Twitter.png"></a>
+                <p id="ucaan-copyright-text">Site design by the United Cancer Advocacy Action Network. All Rights Reserved.</p>
+            </div>
+        </div>
+        
+        <!-- JS -->
+        <script src="/static/js/jquery-2.2.0.js"></script>
+        <script src="/static/js/materialize.js"></script>
+        <script src="/static/js/site.js"></script>
+        <script src="/static/js/copyright-updater.js"></script>
+    </body>
 </html>
