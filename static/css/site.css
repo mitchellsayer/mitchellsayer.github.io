@@ -14,7 +14,7 @@ body {
 
 #ucaan-logo-image {
     position: absolute;
-    max-width: 20%;
+    max-width: 35%;
     height: auto;
     
     left: 50%;
@@ -24,7 +24,7 @@ body {
 @media only screen and (min-width: 1000px) {
     #ucaan-logo-image {
         padding-left: 3em;
-        
+        max-width: 20%;
         left: 0%;
         transform: translate(0%, 0%);
     }
