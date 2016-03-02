@@ -87,6 +87,7 @@ canvas {
 	font-weight: 400;
 	font-family: 'Playfair Display', serif;
     color: #B4E6B7;
+
 }
 
 a {
@@ -118,4 +119,5 @@ a:hover {
     background-color: #18915A;
     color: #EFEEDB;
     transition: 0.2s all linear;
+    cursor: pointer;
 }
