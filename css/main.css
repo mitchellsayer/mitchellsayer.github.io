@@ -1,0 +1,121 @@
+/* ---- reset ---- */ 
+body { 
+    margin:0; 
+    font-family: 'Patua One', cursive;
+    color: #046380;
+    -webkit-font-smoothing: antialiased;
+    text-shadow: 5px 5px 5px rgba(0,0,0,0.004);
+} 
+
+canvas { 
+    display: block; 
+    vertical-align: bottom; 
+} 
+
+/* ---- particles.js container ---- */ 
+#particles-js { 
+    position:absolute; 
+    width: 100%; 
+    height: 100%; 
+    background-color: #002f2f; 
+    background-repeat: no-repeat; 
+    background-size: cover; 
+    background-position: 50% 50%; 
+} 
+
+/* ---- stats.js ---- */ 
+.count-particles { 
+    background: #000022; 
+    position: absolute; 
+    top: 48px; 
+    left: 0; 
+    width: 80px; 
+    color: #13E8E9; 
+    font-size: .8em; 
+    text-align: left; 
+    text-indent: 4px; 
+    line-height: 14px; 
+    padding-bottom: 2px;
+    font-family: Helvetica, Arial, sans-serif; 
+    font-weight: bold; 
+} 
+
+.js-count-particles { 
+    font-size: 1.1em; 
+} 
+
+#stats, .count-particles { 
+    -webkit-user-select: none; 
+    margin-top: 5px; 
+    margin-left: 5px; 
+} 
+
+#stats { 
+    border-radius: 3px 3px 0 0; 
+    overflow: hidden; 
+} 
+
+.count-particles { 
+    border-radius: 0 0 3px 3px; 
+}
+
+#center-main {
+	position: absolute;
+	z-index: 1000;
+    top: 50%;
+    width: 600px;
+    height: 300px;
+    left: 50%;
+    margin-top: -150px;
+    margin-left: -300px;
+    text-align: center;
+}
+    
+#name-text {
+    font-size: 4.425em;
+	line-height: 1.3;
+	margin: 0;
+    font-weight: 400;
+}
+
+#subtitle-text {
+    font-size: 1.425em;
+	line-height: 1.3;
+	margin: 0;
+    margin-bottom: 30px;
+    margin-top: 10px;
+	font-weight: 400;
+	font-family: 'Playfair Display', serif;
+    color: #B4E6B7;
+}
+
+a {
+	color: #52E6AB;
+	text-decoration: none;
+    transition: 0.2s all linear;
+}
+
+a:hover {
+	color: #4E7DE6;
+	transition: 0.2s all linear;
+}
+
+#contact-me {
+    border: 1px solid #18915A;
+    border-radius: 30px;
+    padding: 8px 25px 8px 25px;
+    font-size: 1.225em;
+	margin: 0;
+	font-weight: 500;
+	font-family: 'Source Code Pro', monospace;
+    background-color: #EFEEDB;
+    color: #157D4E;
+    transition: 0.2s all linear;
+}
+
+#contact-me:hover {
+    border: 1px solid #EFEEDB;
+    background-color: #18915A;
+    color: #EFEEDB;
+    transition: 0.2s all linear;
+}
