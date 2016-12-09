@@ -31,11 +31,6 @@
       const NEAR = 0.1;
       const FAR = 10000;
 
-      /*
-        Make sure all functions are a function of 'y' and 
-        omit the 'y='.
-      */
-
       func_arr = [];
 
       var gui = new dat.GUI({
@@ -52,7 +47,6 @@
       };
 
       var params = new vars();
-      
 
       var funcController = gui.add(params, "functions");
       gui.add(params, 'lowerBound').onChange(function(val) {doMath(params)});
@@ -122,13 +116,9 @@
       scene.add(pointLight);
 
       scene.add(new THREE.Line(zAxis,zMaterial));
-      
-
-      console.log("Camera Looking: " + camera.getWorldDirection);
     }
 
     function doMath(params) {
-      //!!!!MATH!!!!
       step = (params.upperBound-params.lowerBound)/params.numCircles;  
 
       scene.remove(scene.children[scene.children.length-1]);
@@ -144,14 +134,14 @@
 
           var x = j;
           var radius = eval(func) - params.axis;
-          var segments = 32; //<-- Increase or decrease for more resolution I guess
+          var segments = 32;
 
           var material = new THREE.LineBasicMaterial( { color: col } );
           var geometry = new THREE.CircleGeometry( radius, segments );
           geometry.applyMatrix( new THREE.Matrix4().makeTranslation(0, 0, -j));
-          // Remove center vertex
           geometry.vertices.shift();
           parent.add( new THREE.Line( geometry, material));
+          
           if (j>params.lowerBound){
             for (var k = 0; k < 2*Math.PI; k += 2*Math.PI/params.rotationStep) {
               var x = j-step;
