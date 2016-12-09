@@ -53,7 +53,7 @@
       gui.add(params, 'upperBound').onChange(function(val) {doMath(params)});
       gui.add(params, 'numCircles').onChange(function(val) {doMath(params)});
       gui.add(params, 'rotationStep').onChange(function(val) {doMath(params)});
-      gui.add(params, 'axis').onChange(function(val) {doMath(params)});
+      gui.add(params, 'axis').min(-10).max(20).step(1).onChange(function(val) {doMath(params)});
 
       funcController.onFinishChange(function(value) {
         func_arr = value.split(',');
