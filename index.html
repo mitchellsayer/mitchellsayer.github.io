@@ -49,10 +49,10 @@
       var params = new vars();
 
       var funcController = gui.add(params, "functions");
-      gui.add(params, 'lowerBound').onChange(function(val) {doMath(params)});
-      gui.add(params, 'upperBound').onChange(function(val) {doMath(params)});
-      gui.add(params, 'numCircles').onChange(function(val) {doMath(params)});
-      gui.add(params, 'rotationStep').onChange(function(val) {doMath(params)});
+      gui.add(params, 'lowerBound').min(-20).max(10).step(1).onChange(function(val) {doMath(params)});
+      gui.add(params, 'upperBound').min(-10).max(20).step(1).onChange(function(val) {doMath(params)});
+      gui.add(params, 'numCircles').min(1).max(40).step(1).onChange(function(val) {doMath(params)});
+      gui.add(params, 'rotationStep').min(1).max(40).step(1).onChange(function(val) {doMath(params)});
       gui.add(params, 'axis').min(-10).max(20).step(1).onChange(function(val) {doMath(params)});
 
       funcController.onFinishChange(function(value) {
