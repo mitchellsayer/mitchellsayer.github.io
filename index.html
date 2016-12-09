@@ -1,48 +1,186 @@
-<!DOCTYPE html>
-
-<html lang="en">
-
+<!doctype html>
 <head>
-    <!-- Meta -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Mitchell Sayer Home">
-    <meta name="author" content="Mitchell Sayer">
-
-    <!-- Title -->
-    <title>Mitchell Sayer</title>
-
-    <!-- Favicon -->
-    <link href="/static/assets/Buddhabrot.png" rel="icon" type="image/png">
-
-    <!-- CSS -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/css/materialize.min.css" rel='stylesheet' type='text/css'>
-    <link href='https://fonts.googleapis.com/css?family=Patua+One|Playfair+Display:400,700|Source+Code+Pro' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" href="/static/css/main.css">
-
-    <!-- Blocking JS -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js"></script>
+  <meta charset="utf-8">
+  <meta name="author" content="Mitchell Sayer" />
+  <meta name="viewport" content="width=device-width">
+  <title></title>
+  <style>
+    html, body {
+      padding: 0;
+      margin: 0;
+    }
+  </style>
 </head>
-
 <body>
-    <div id="particles-js"></div>
+  <div id="container"></div>
+  <script src="third_party/three.min.js"></script>
+  <script src="third_party/OrbitControls.js"></script>
+  <script src="third_party/dat.gui.min.js"></script>
+  <script>
+    var camera, controls, scene, renderer, func_arr, step;
 
-    <header id="main-container" class="container center-align">
-        <div class="row">
-            <div class="col s12">
-                <h1 id="name-text">Mitchell Sayer</h1>
-                <h2 id="subtitle-text">Chief Executive Officer of <a href="http://pinnaclecoding.co/" id="pinnacle-text">Pinnacle Coding</a> & Enthusiast of Programming Thingys.</h2>
-                <!-- button id="contact-button" type="button" onclick="sendMail()">Say Hello!</button -->
-                <button id="contact-button" class="btn waves-effect waves-light" type="button" onclick="sendMail()">Say Hello!</button>
-            </div>
-        </div>
-    </header>
+    init();
+    update();
 
-    <!-- Async JS -->
-    <script src="/static/js/particles.min.js"></script>
-    <script src="/static/js/app.js"></script>
+    function init() {
+      const WIDTH = window.innerWidth;
+      const HEIGHT = window.innerHeight;
 
+      const VIEW_ANGLE = 45;
+      const ASPECT = WIDTH / HEIGHT;
+      const NEAR = 0.1;
+      const FAR = 10000;
+
+      /*
+        Make sure all functions are a function of 'y' and 
+        omit the 'y='.
+      */
+
+      func_arr = [];
+
+      var gui = new dat.GUI({
+        height : 6 * 32 - 1
+      });
+
+      var vars = function() {
+        this.functions = '',
+        this.lowerBound = -5,
+        this.upperBound = 5,
+        this.numCircles = 20,
+        this.rotationStep = 20,
+        this.axis = 0
+      };
+
+      var params = new vars();
+      
+
+      var funcController = gui.add(params, "functions");
+      gui.add(params, 'lowerBound').onChange(function(val) {doMath(params)});
+      gui.add(params, 'upperBound').onChange(function(val) {doMath(params)});
+      gui.add(params, 'numCircles').onChange(function(val) {doMath(params)});
+      gui.add(params, 'rotationStep').onChange(function(val) {doMath(params)});
+      gui.add(params, 'axis').onChange(function(val) {doMath(params)});
+
+      funcController.onFinishChange(function(value) {
+        func_arr = value.split(',');
+        for (var i = 0; i < func_arr.length; i++) {
+          var initCheck = func_arr[i].search('y=');
+          if (initCheck>0) {
+            func_arr[i] = func_arr[i].substring(initCheck);
+          }
+        }
+        console.log(func_arr[0]);
+        doMath(params);
+        update();
+      });
+
+      const container = document.querySelector('#container');
+
+      renderer = new THREE.WebGLRenderer();
+      camera =
+          new THREE.PerspectiveCamera(
+              VIEW_ANGLE,
+              ASPECT,
+              NEAR,
+              FAR
+          );
+
+      camera.position.z = 20;
+      controls = new THREE.OrbitControls( camera, renderer.domElement );
+      controls.enableZoom = true;
+
+      scene = new THREE.Scene();
+      scene.add(camera);
+      renderer.setSize(WIDTH, HEIGHT);
+      container.appendChild(renderer.domElement);
+
+      //X-Axis:
+      var xMaterial = new THREE.LineBasicMaterial({ color: 0xff0000 });
+      var xAxis = new THREE.Geometry();
+      xAxis.vertices.push(new THREE.Vector3(-10000,0,0));
+      xAxis.vertices.push(new THREE.Vector3(10000,0,0));
+      scene.add(new THREE.Line(xAxis, xMaterial));
+
+      //Y-Axis
+      var yMaterial = new THREE.LineBasicMaterial({ color: 0x00ff00 });
+      var yAxis = new THREE.Geometry();
+      yAxis.vertices.push(new THREE.Vector3(0,-10000,0));
+      yAxis.vertices.push(new THREE.Vector3(0,10000,0));
+      scene.add(new THREE.Line(yAxis, yMaterial));
+
+      //Z-Axis
+      var zMaterial = new THREE.LineBasicMaterial({ color: 0x0000ff });
+      var zAxis = new THREE.Geometry();
+      zAxis.vertices.push(new THREE.Vector3(0,0,-10000));
+      zAxis.vertices.push(new THREE.Vector3(0,0,10000));
+      scene.add(new THREE.Line(zAxis, zMaterial));
+
+      const pointLight = new THREE.PointLight(0xFFFFFF);
+      pointLight.position.x = 10;
+      pointLight.position.y = 50;
+      pointLight.position.z = 130;
+      scene.add(pointLight);
+
+      scene.add(new THREE.Line(zAxis,zMaterial));
+      
+
+      console.log("Camera Looking: " + camera.getWorldDirection);
+    }
+
+    function doMath(params) {
+      //!!!!MATH!!!!
+      step = (params.upperBound-params.lowerBound)/params.numCircles;  
+
+      scene.remove(scene.children[scene.children.length-1]);
+      var parent = new THREE.Object3D();
+      scene.add(parent);
+
+      colors = [0xf4b342, 0xb3e22f, 0x2fe2c2, 0x9e2fe2, 0xe22fcb];
+
+      for (var i = 0; i < func_arr.length; i++) {
+        var func = func_arr[i];
+        col = colors[Math.round(Math.random()*(colors.length-1))];
+        for (var j = params.lowerBound; j < params.upperBound; j += step) {
+
+          var x = j;
+          var radius = eval(func) - params.axis;
+          var segments = 32; //<-- Increase or decrease for more resolution I guess
+
+          var material = new THREE.LineBasicMaterial( { color: col } );
+          var geometry = new THREE.CircleGeometry( radius, segments );
+          geometry.applyMatrix( new THREE.Matrix4().makeTranslation(0, 0, -j));
+          // Remove center vertex
+          geometry.vertices.shift();
+          parent.add( new THREE.Line( geometry, material));
+          if (j>params.lowerBound){
+            for (var k = 0; k < 2*Math.PI; k += 2*Math.PI/params.rotationStep) {
+              var x = j-step;
+              var r1 = eval(func) - params.axis;   
+              var r2 = radius;
+              var theta = k;
+
+              var material = new THREE.LineBasicMaterial({
+                color: col
+              });
+
+              var geometry = new THREE.Geometry();
+              geometry.vertices.push(new THREE.Vector3(r1*Math.cos(theta), r1*Math.sin(theta), -(j-step)));
+              geometry.vertices.push(new THREE.Vector3(r2*Math.cos(theta), r2*Math.sin(theta), -j));
+              var line = new THREE.Line(geometry, material);
+              parent.add(line);
+            }
+          }
+        }
+      }
+    }
+
+    function update () {   
+      controls.update();
+      requestAnimationFrame(update);
+      renderer.render(scene, camera);
+    }
+
+    requestAnimationFrame(update);
+  </script>
 </body>
-
 </html>
